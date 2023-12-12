@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-void suavização(struct dados *x, struct dados *y, int *n){
+void suavizarMatriz(struct dados *x, struct dados *y, int *n){
    int matriz[x->lin * x->col];
    
    // fazer a média
