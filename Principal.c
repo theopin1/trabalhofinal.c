@@ -137,7 +137,7 @@ void lerMatriz(struct dados *x, struct dados *y, char *filename){
 }
 
 void quantizarMatriz(struct dados *x, int nivel){
-    x->data2 = (unsigned char*) malloc(x->col * x->lin + nivel *nivel * sizeof(unsigned char));
+    x->data2 = (unsigned char*) malloc(nivel *nivel * sizeof(unsigned char));
     
     float intv = (float)(x->max + 1)/nivel;
     int m = 0;
@@ -182,11 +182,6 @@ void escrevermatriz(struct dados *x, char *filename, int n, char c){
 
 void matrizSCM(struct dados *x, struct dados *y, int n){
     int a, b;
-
-
-    for(int i = 0; i  < x->lin * x->col; i++){
-        x->data2[i] = 0;
-    }
     
     for(int i = 0; i  <  x->lin * x->col; i++){
         a = x->data[i];
