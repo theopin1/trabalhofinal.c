@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
         char *nomeArquivo =  dir->d_name;
         char primeiroCaractere = nomeArquivo[0];
 
-        printf("Processando: %s\n", caminho1);
+        printf("Processando: %s\n", dir->d_name);
 
         lerMatriz(&matriz, &matrizsuav, caminho1);
         
@@ -156,11 +156,11 @@ void lerMatriz(struct dados *x, struct dados *y, char *filename){
 void quantizarMatriz(struct dados *x, int nivel){
     x->data2 = (unsigned char*) malloc(nivel *nivel * sizeof(unsigned char));
     
-    float intv = (float)(x->max + 1)/nivel;
+    float quant = (float)(x->max + 1)/nivel;
     int m = 0;
     for(int i = 0; i  < x->col * x->lin; i++){
         while(m <= nivel){
-            if((x->data[i]) >= (intv*m) && (x->data[i]) < (intv*(m+1))){
+            if((x->data[i]) >= (quant*m) && (x->data[i]) < (quant*(m+1))){
                 x->data[i] = m;
                 break;
             }
@@ -197,7 +197,7 @@ void escrevermatriz(struct dados *x, char *filename, int n, char c){
     fclose(fp);
 }
 
-void matrizSCM(struct dados *x, struct dados *y, int n){
+void matrizSCM(struct dados *x, struct dados *y, int nivel){
     int a, b;
 
 	
@@ -208,7 +208,7 @@ void matrizSCM(struct dados *x, struct dados *y, int n){
     for(int i = 0; i  <  x->lin * x->col; i++){
         a = x->data[i];
         b = y->data[i];
-        x->data2[a * n + b] += 1;
+        x->data2[a * nivel + b] += 1;
     }
 
 }
