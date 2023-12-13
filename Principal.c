@@ -58,7 +58,9 @@ int main(int argc, char **argv) {
         if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0) {
             continue; // Ignora os diretórios . e ..
         }
-        char *caminho1 = malloc(strlen(dir->d_name) + strlen(argv[3]) + 3);
+        
+	// caminho para o arquivo    
+	char *caminho1 = malloc(strlen(dir->d_name) + strlen(argv[3]) + 3);
         strcpy(caminho1, argv[3]);
         strcat(caminho1, "/");
         strcat(caminho1, dir->d_name);
