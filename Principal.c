@@ -197,7 +197,12 @@ void escrevermatriz(struct dados *x, char *filename, int n, char c){
 
 void matrizSCM(struct dados *x, struct dados *y, int n){
     int a, b;
-    
+
+	
+    for (int i = 0; i < nivel * nivel; i++) {
+       	x->data2[i] = 0;
+    }
+	
     for(int i = 0; i  <  x->lin * x->col; i++){
         a = x->data[i];
         b = y->data[i];
