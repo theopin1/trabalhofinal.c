@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
 
     if (argc != 5) {
-        printf("Formato: \n\t %s quantização suavização <imagemEntrada.pgm> <imagemEntrada2.pgm> <imagemSaida.pgm>\n", argv[0]);
+        printf("Formato: \n\t %s Borramento quantização <imagemEntrada.pgm> <imagemSaida.pgm>\n", argv[0]);
         exit(1);
     }
 
