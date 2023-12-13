@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
         }
         
 	// caminho para o arquivo    
-	char *caminho1 = malloc(strlen(dir->d_name) + strlen(argv[3]) + 3);
+	char *caminho1 = malloc(strlen(dir->d_name) + strlen(argv[3]) + 1);
         strcpy(caminho1, argv[3]);
         strcat(caminho1, "/");
         strcat(caminho1, dir->d_name);
