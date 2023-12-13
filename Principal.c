@@ -1,7 +1,10 @@
-
 //********************************************
 // Aluno: Théo Pinheiro Alcântara
 // Matricula: 20231045050173
+// Aluno: Guilherme Pessoa Marinho
+// Matricula: 20231045050343
+// Aluno: Juan Lucas Bezerra Insaurralde
+// Matricula: 20231045050220
 // Avaliação 04: Trabalho final
 // 04.505.23 − 2023.2 − Prof. Daniel Ferreira
 // Compilado: gcc
@@ -11,6 +14,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include <time.h>
 
 struct dados {
     int lin;
@@ -29,11 +33,13 @@ void matrizSCM(struct dados *, struct dados *, int);
 void escrevermatriz(struct dados *, char *, int , char);
 
 int main(int argc, char **argv) {
+    clock_t begin,end;
+    double time_total,tempoimg = 0;
     struct dados matriz, matrizsuav;
 
 
     if (argc != 5) {
-        printf("Formato: \n\t %s Borramento quantização <imagemEntrada.pgm> <imagemSaida.pgm>\n", argv[0]);
+        printf("Formato: \n\t %s quantização suavização <imagemEntrada.pgm> <imagemEntrada2.pgm> <imagemSaida.pgm>\n", argv[0]);
         exit(1);
     }
 
@@ -41,12 +47,13 @@ int main(int argc, char **argv) {
     
     DIR *d;
     struct dirent *dir;
+     begin = clock();
     d = opendir(argv[3]);
     if (!d) {
         perror("Erro ao abrir o diretório");
         exit(1);
     }
-
+    int numeroentrada = 0;
     while ((dir = readdir(d)) != NULL) {
         if (strcmp(dir->d_name, ".") == 0 || strcmp(dir->d_name, "..") == 0) {
             continue; // Ignora os diretórios . e ..
@@ -80,10 +87,18 @@ int main(int argc, char **argv) {
 
         free(caminho1);
 
-          
+          numeroentrada++;
+    }
+    for(int k = 0; k < numeroentrada; k++){
+    closedir(d);
     }
     
-    closedir(d);
+    end = clock();
+    time_total = (double) (end-begin)/CLOCKS_PER_SEC;
+    tempoimg = time_total/numeroentrada;
+
+
+    printf("tempo total %lf\ne o tempo por imagem eh %lf\n",time_total,tempoimg);
     free(matriz.data);
     free(matrizsuav.data);
     free(matriz.data2);
